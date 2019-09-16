@@ -1,7 +1,6 @@
 #!/bin/bash
 
 source secret.env
-export PGHOST="localhost"
 export PGDATABASE="wrds"
 export PGUSER="wrds"
 
