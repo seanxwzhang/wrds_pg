@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from sqlalchemy import create_engine
 
-from wrds2pg.wrds2pg import wrds_update, get_process, wrds_process_to_pg, \
+from wrds2postgres.wrds2postgres import wrds_update, get_process, wrds_process_to_pg, \
     run_file_sql, make_engine, wrds_id
 from time import gmtime, strftime
 
@@ -42,7 +42,7 @@ if tfz_idx or tfz_dly_ft:
     engine.execute("GRANT SELECT ON crsp.tfz_ft TO crsp_access")
     # Add comments
     sql = "Created using update_crsp.py ON " + strftime("%Y-%m-%d %H:%M:%S", gmtime())
-    wrds2pg.set_table_comment("tfz_ft", "crsp", sql, engine)
+    wrds2postgres.set_table_comment("tfz_ft", "crsp", sql, engine)
 
 mse = wrds_update("mse", "crsp", fix_missing=True)
 

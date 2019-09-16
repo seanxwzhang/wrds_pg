@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-from wrds2pg.wrds2pg import wrds_update, run_file_sql
-from wrds2pg.wrds2pg import make_engine, wrds_id
+from wrds2postgres.wrds2postgres import wrds_update, run_file_sql
+from wrds2postgres.wrds2postgres import make_engine, wrds_id
 from sqlalchemy import Table, MetaData, Boolean
 
 engine = make_engine()

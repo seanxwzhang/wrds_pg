@@ -6,12 +6,12 @@ host = os.getenv("PGHOST", "localhost")
 wrds_id = os.getenv("WRDS_ID")
 engine = create_engine("postgresql://" + host + "/" + dbname)
 
-from wrds2pg import wrds2pg
+from wrds2postgres import wrds2postgres
 
 # engine.execute("CREATE ROLE risk")
 # engine.execute("GRANT USAGE ON SCHEMA risk TO risk")
 
-update = wrds2pg.wrds_update("vavoteresults", "risk")
+update = wrds2postgres.wrds_update("vavoteresults", "risk")
 
 if update:
     sql = """
@@ -55,6 +55,6 @@ if update:
     """
     engine.execute(sql)
 
-wrds2pg.wrds_update("issrec", "risk")
-wrds2pg.wrds_update("globalvoteresults", "risk")
-wrds2pg.wrds_update("proposals", "risk")
+wrds2postgres.wrds_update("issrec", "risk")
+wrds2postgres.wrds_update("globalvoteresults", "risk")
+wrds2postgres.wrds_update("proposals", "risk")
