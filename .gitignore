@@ -6,3 +6,4 @@ __pycache__/
 Untitled1.ipynb
 .httr-oauth
 .vscode
+secret.env
