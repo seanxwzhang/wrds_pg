@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+printf "Intializing"
+./initialize.py
 printf "Updating Audit Analytics (audit) ...\n"
 cd audit
 ./update_audit.py
