@@ -16,7 +16,7 @@ logger.setLevel(getenv("LOGLEVEL", "DEBUG"))
 
 engine = create_engine("postgresql://{}:{}@{}/{}".format(pg_user, pg_pass, pg_host, pg_db))
 
-schemas = ["audit", "crsp", "dealscan", "ibes", "rpna", "tfn"]
+schemas = ["audit", "crsp", "crspa", "dealscan", "ibes", "rpna", "tfn", "comp"]
 
 for schema_name in schemas:
     if not engine.dialect.has_schema(engine, schema_name):

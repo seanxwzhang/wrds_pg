@@ -15,6 +15,9 @@ cd audit
 printf "\nUpdating CRSP (crsp) ...\n"
 cd ../crsp
 ./update_crsp.py
+printf "\nUpdating CRSPA (crspa) ...\n"
+cd ../crspa
+./update_crspa.py
 printf "\nUpdating COMP (comp) ...\n"
 cd ../comp
 ./update_comp.py
