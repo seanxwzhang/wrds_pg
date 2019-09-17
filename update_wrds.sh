@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
-printf "Intializing"
+printf "Intializing\n"
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+cd $DIR
+conda activate wrds
+git pull
 source env.sh
 ./initialize.py
 printf "Updating Audit Analytics (audit) ...\n"
