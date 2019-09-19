@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source secret.env
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+source "$DIR/secret.env"
 export PGDATABASE="wrds"
 export PGUSER="wrds"
 

@@ -30,19 +30,21 @@ def init(schemas):
     logger.info("Initialization complete")
 
 @click.command()
-@click.argument("target", default="all")
-def main(target):
+@click.argument("targets", nargs=-1)
+def main(targets):
     dirnames = [dirname for dirname in next(walk('.'))[1] if not dirname.startswith('.') and dirname not in NON_SCHEMA_FOLDERS]
     schemas = [schema for schema in dirnames if path.isfile(f"{schema}/update.py")]
     init(schemas)
-    failed_update = []
-    if target == "all":
+    failed_update, target_schemas = [], []
+    if len(targets) == 0:
         target_schemas = schemas
-    elif target in schemas:
-        target_schemas = [target]
     else:
-        logger.error(f"Unsupported WRDS schema {target}")
-        raise Exception(f"Unsupported WRDS schema {target}")
+        for target in targets:
+            if target in schemas:
+                target_schemas.append(target)
+            else:
+                logger.error(f"Unsupported WRDS schema {target}")
+                raise Exception(f"Unsupported WRDS schema {target}")
     logger.info(f"Schemas to be updated: {target_schemas}")
     for schema in target_schemas:
         logger.info(f"Updating schema {schema}")
