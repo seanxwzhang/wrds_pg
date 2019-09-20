@@ -8,6 +8,7 @@ printf "Intializing\n"
 source ~/anaconda3/etc/profile.d/conda.sh
 conda activate wrds
 ## Pull in latest update
+pip install --upgrade wrds2postgres
 git pull
 source env.sh
 python ./main.py "$@"
