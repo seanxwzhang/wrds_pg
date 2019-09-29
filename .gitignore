@@ -7,3 +7,4 @@ Untitled1.ipynb
 .httr-oauth
 .vscode
 secret.env
+config/secret.yml
