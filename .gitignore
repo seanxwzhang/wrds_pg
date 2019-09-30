@@ -8,3 +8,4 @@ Untitled1.ipynb
 .vscode
 secret.env
 config/secret.yml
+*egg-info

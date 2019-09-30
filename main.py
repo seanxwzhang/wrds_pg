@@ -12,7 +12,7 @@ from sqlalchemy.schema import CreateSchema
 from os import getenv, walk, path
 from wrds2postgres.wrds2postgres import wrds_update, list_accessible_tables
 
-NON_SCHEMA_FOLDERS = {"doc", "pg", "scripts", "config"}
+NON_SCHEMA_FOLDERS = {"doc", "pg", "wrdscli", "config"}
 LOG_FORMAT = "%(asctime)s [%(filename)s] [%(levelname)s]: %(message)s"
 logging.shutdown()
 reload(logging)
