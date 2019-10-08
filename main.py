@@ -41,7 +41,7 @@ def init(schemas):
     pg_pass = getenv("PGPASS")
 
     engine = create_engine("postgresql://{}:{}@{}/{}".format(pg_user, pg_pass, pg_host, pg_db))
-    
+
     for schema_name in schemas:
         if not engine.dialect.has_schema(engine, schema_name):
             logger.info("Creating schema {}".format(schema_name))
@@ -86,8 +86,10 @@ def update_all_accessible_tables(schema, list_table, only):
 def main(targets, all_accessible, list_table, only):
     dirnames = [dirname for dirname in next(walk('.'))[1] if not dirname.startswith('.') and dirname not in NON_SCHEMA_FOLDERS]
     schemas = [schema for schema in dirnames if path.isfile(f"{schema}/update.py")]
+    if all_accessible:
+        schemas += targets
     init(schemas)
-    failed_update, target_schemas = [], []
+    success_update, failed_update, target_schemas = [], [], []
     if len(targets) == 0:
         target_schemas = schemas
     else:
@@ -113,7 +115,7 @@ def main(targets, all_accessible, list_table, only):
             logger.error(traceback.format_exception(*(sys.exc_info())))
         logger.info(f"Schema {schema} updated")
 
-    logger.warn(f"All updates finished with {len(failed_update)} failed updates: {failed_update}")
+    logger.warning(f"All updates finished with {len(failed_update)} failed updates: {failed_update}")
 
 if __name__ == "__main__":
     with tempfile.NamedTemporaryFile(delete=False) as log_file:
@@ -124,4 +126,3 @@ if __name__ == "__main__":
         logger.addHandler(file_handler)
         main() # pylint: disable=no-value-for-parameter
         logger.info(f"Log saved to file {log_file.name}")
-        
